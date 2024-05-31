@@ -1,0 +1,42 @@
+﻿@model List<Ilan>
+
+@{
+	ViewData["Title"] = "İlan Düzenle";
+}
+<div class="container">
+	<div class="row mb-2">
+		<div class="col-sm-6"><strong>İlan Adı</strong></div>
+		<div class="col-sm-2"><strong>Fiyat</strong></div>
+		<div class="col-sm-2"><strong>Fotoğraf</strong></div>
+		<div class="col-sm-2"><strong>Eklenme Tarihi</strong></div>
+	</div>
+	@foreach (var ilan in Model)
+	{
+		<!-- ürün form -->
+		<form class="row g-3 mb-1" method="post" action="/Editor/IlanGuncelle" autocomplete="off">
+			<div class="col-sm-6">
+				<input type="text" class="form-control" name="Name" value="@ilan.Name" placeholder="İlan Adı">
+			</div>
+			<div class="col-sm-2">
+				<input type="number" class="form-control" name="Price" value="@ilan.Price" placeholder="Fiyat">
+			</div>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" name="Img" value="@ilan.Img" placeholder="Fotoğraf">
+			</div>
+			<div class="col-sm-2">
+				<input type="datetime" style="background-color:white" class="form-control" value="@ilan.Date" placeholder="Tarih" readonly>
+				<input type="datetime-local" id="Date" name="Date" required>
+			</div>
+			<div class="col-sm-2 align-self-end">
+				<button class="btn btn-primary">Güncelle</button>
+			</div>
+		</form>
+	}
+
+	@if (ViewData["Mesaj"] != null)
+	{
+		<div class="alert alert-primary" role="alert">
+			@ViewData["Mesaj"]
+		</div>
+	}
+</div>

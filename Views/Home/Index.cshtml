@@ -1,0 +1,59 @@
+﻿@model List<Ilan>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .product-item {
+        width: 23%; 
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-item button {
+            background-color: thistle;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+            .product-item button:hover {
+                background-color: lightgrey;
+            }
+</style>
+
+<form method="post" action="/home/index">
+    <div class="product-container">
+        @foreach (var urun in Model)
+        {
+            <div class="product-item">
+                <img src="@urun.Img" alt="@urun.Name">
+                <p>@urun.Name</p>
+                <p>@urun.Price.ToString("N") TL</p>
+                <p>İlana eklenme tarihi: @urun.Date.ToString("dd/MM/yyyy")</p>
+                <button>Satın Al</button>
+            </div>
+        }
+    </div>
+</form>
+

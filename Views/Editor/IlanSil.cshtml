@@ -1,0 +1,41 @@
+﻿@model List<Ilan>
+
+@{
+    ViewData["Title"] = "İlan Sil";
+}
+
+<div class="container">
+	<div class="row mb-2">
+		<div class="col-sm-6"><strong>İlan Adı</strong></div>
+		<div class="col-sm-2"><strong>Fiyat</strong></div>
+		<div class="col-sm-2"><strong>Fotoğraf</strong></div>
+		<div class="col-sm-2"><strong>Eklenme Tarihi</strong></div>
+	</div>
+	@foreach (var ilan in Model)
+	{
+		<form class="row g-3 mb-1" method="post" action="/Editor/IlanSil" onsubmit="return confirm('İlanı silmek istediğinize emin misiniz?');">
+			<div class="col-sm-6">
+				<input type="text" style="background-color:white" class="form-control" name="Name" value="@ilan.Name" placeholder="İlan Adı" readonly>
+			</div>
+			<div class="col-sm-2">
+				<input type="number" style="background-color:white" class="form-control" name="Price" value="@ilan.Price" placeholder="Fiyat" readonly>
+			</div>
+			<div class="col-sm-2">
+				<input type="url" style="background-color:white" class="form-control" name="Img" value="@ilan.Img" placeholder="Fotoğraf" readonly>
+			</div>
+			<div class="col-sm-2">
+				<input type="datetime" style="background-color:white" class="form-control" name="Date" value="@ilan.Date" placeholder="Tarih" readonly>
+			</div>
+			<div class="col-sm-2 align-self-end">
+				<button class="btn btn-primary">Sil</button>
+			</div>
+		</form>
+	}
+
+	@if (ViewData["Mesaj"] != null)
+	{
+		<div class="alert alert-primary" role="alert">
+			@ViewData["Mesaj"]
+		</div>
+	}
+</div>
